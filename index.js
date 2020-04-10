@@ -8,8 +8,15 @@ function renderImage(src) {
 }
     //
 function getDogImage() {
+  // by default, fetch() makes GET requests 
+  // so unneccessary to do this...
+  // const options = {method: 'GET'}; 
+  // fetch('https://dog.ceo/api/breeds/image/random', options)
+  // just...
+  
   fetch('https://dog.ceo/api/breeds/image/random')
-    // originally
+    
+  // original repl.it demo
     // .then(response => response.json())
     // .then(responseJson => console.log(responseJson));
 
@@ -17,9 +24,13 @@ function getDogImage() {
       return response.json();
     })
 
-    .then(responseJson => {
-     renderImage(responseJson.message);
-     console.log(responseJson)
+    .then(data => {  // data aka responseJson = response.json
+     renderImage(data.message);
+     console.log(data);
+    })
+    
+    .catch(error => {
+      console.log(error);
     });
 }
 
